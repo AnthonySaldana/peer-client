@@ -18,7 +18,7 @@ class PeerController < ApplicationController
   def upload
     uploaded_io = params[:csv]
     #url = 'https://tranquil-citadel-34866.herokuapp.com/upload'
-    url = 'https://tranquil-citadel-34866.herokuapp.com/peer/upload'
+    url = 'https://tranquil-citadel-34866.herokuapp.com/upload'
 
     res = RestClient::Request.execute(
       method: :post,

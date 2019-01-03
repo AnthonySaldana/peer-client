@@ -1,2 +1,8 @@
 <h1>Please provide a zipcode</h1>
 Try this one <a href="/peer/90201">90201<a>
+<br/>
+<p>Update population file: </p>
+<%= form_tag({action: :upload}, multipart: true) do %>
+  <%= file_field_tag 'csv' %>
+  <%= submit_tag("Update") %>
+<% end %>

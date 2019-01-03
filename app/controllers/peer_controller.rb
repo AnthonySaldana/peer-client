@@ -1,4 +1,5 @@
 require 'httparty'
+require 'rest-client'
 
 class PeerController < ApplicationController
   def index
@@ -10,6 +11,27 @@ class PeerController < ApplicationController
     end
     render default
   end
+
   def default
+  end
+
+  def upload
+    uploaded_io = params[:csv]
+    #url = 'https://tranquil-citadel-34866.herokuapp.com/upload'
+    url = 'https://tranquil-citadel-34866.herokuapp.com/peer/upload'
+
+    res = RestClient::Request.execute(
+      method: :post,
+      url: url,
+      :payload => {
+            :multipart => true,
+            :file => File.new(uploaded_io.path, 'r+')
+          },
+      headers: {
+          'Content-Type' => "multipart/form-data",
+          :Accept => "*/*"
+      }
+    )
+    return render json: res
   end
 end

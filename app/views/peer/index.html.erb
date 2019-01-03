@@ -1,8 +1,13 @@
-<h1>Please provide a zipcode</h1>
-Try this one <a href="/peer/90201">90201<a>
+<h1>Please provide a zipcode or update the data file</h1>
 <br/>
-<p>Update population file: </p>
+<p>Update CBSA to MSA file: </p>
 <%= form_tag({action: :upload}, multipart: true) do %>
   <%= file_field_tag 'csv' %>
   <%= submit_tag("Update") %>
+<% end %>
+<hr/>
+<%= form_tag({action: :search}, method: "get") do %>
+  <%= label_tag(:q, "Search by Zipcode:") %>
+  <%= text_field_tag(:zip) %>
+  <%= submit_tag("Search") %>
 <% end %>

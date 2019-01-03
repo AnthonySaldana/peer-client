@@ -6,8 +6,7 @@ class PeerController < ApplicationController
     zip = params[:zip].to_i
     if zip != 0
       url = 'https://tranquil-citadel-34866.herokuapp.com/peer?zip=' + zip.to_s
-      response = HTTParty.get(url)
-      return render json: response
+      @response = HTTParty.get(url)
     end
     render default
   end
@@ -32,6 +31,16 @@ class PeerController < ApplicationController
           :Accept => "*/*"
       }
     )
-    return render json: res
+    @response = "Updated succesfully"
+  end
+
+  def search
+    zip = params[:zip].to_i
+    @response
+    if zip != 0
+      url = 'https://tranquil-citadel-34866.herokuapp.com/peer?zip=' + zip.to_s
+      @response = HTTParty.get(url)
+    end
+    render default
   end
 end
